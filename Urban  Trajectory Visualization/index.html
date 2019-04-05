@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	<title>Rishi Koushal, Sathyaram, Abinandaraj</title>
+	<!-- Bootstrap -->
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<!-- Leaflet Map Style -->
+	<link href="css/leaflet.css" rel="stylesheet" />
+	<link href="css/leaflet.draw.css" rel="stylesheet" />
+	<!--keen io dashboard-->
+	<link href="css/keen-dashboards.css" rel="stylesheet" />
+
+	<!-- Your Style -->
+	<link href="css/MyCSS.css" rel="stylesheet">
+	<!-- Leaflet Map api -->
+	<script src="js/leaflet-src.js"></script>
+	<script src="js/Leaflet.draw.js"></script>
+	<script src="js/leaflet-heat.js"></script>
+	<script src="js/edit/handler/Edit.Poly.js"></script>
+	<script src="js/edit/handler/Edit.SimpleShape.js"></script>
+	<script src="js/edit/handler/Edit.Circle.js"></script>
+	<script src="js/edit/handler/Edit.Rectangle.js"></script>
+
+	<script src="js/draw/handler/Draw.Feature.js"></script>
+	<script src="js/draw/handler/Draw.Polyline.js"></script>
+	<script src="js/draw/handler/Draw.Polygon.js"></script>
+	<script src="js/draw/handler/Draw.SimpleShape.js"></script>
+	<script src="js/draw/handler/Draw.Rectangle.js"></script>
+	<script src="js/draw/handler/Draw.Circle.js"></script>
+	<script src="js/draw/handler/Draw.Marker.js"></script>
+
+	<script src="js/ext/LatLngUtil.js"></script>
+	<script src="js/ext/GeometryUtil.js"></script>
+	<script src="js/ext/LineUtil.Intersect.js"></script>
+	<script src="js/ext/Polyline.Intersect.js"></script>
+	<script src="js/ext/Polygon.Intersect.js"></script>
+
+	<script src="js/Control.Draw.js"></script>
+	<script src="js/Tooltip.js"></script>
+	<script src="js/Toolbar.js"></script>
+
+	<script src="js/draw/DrawToolbar.js"></script>
+	<script src="js/edit/EditToolbar.js"></script>
+	<script src="js/edit/handler/EditToolbar.Edit.js"></script>
+	<script src="js/edit/handler/EditToolbar.Delete.js"></script>
+	<script src="js/communist.js"></script>
+	<script src="js/TArr.js"></script>
+	<script src="js/keen.min.js"></script>
+	<script src="https://d3js.org/d3.v3.min.js"></script>
+	<script src="https://d3js.org/d3-color.v1.min.js"></script>
+	<script src="https://d3js.org/d3-interpolate.v1.min.js"></script>
+	<script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+	<script src="https://cdn.zingchart.com/zingchart.min.js"></script>
+	
+  <script>
+    zingchart.MODULESDIR = "https://cdn.zingchart.com/modules/";
+    ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9", "ee6b7db5b51705a13dc2339db3edaf6d"];
+  </script>
+  <style>
+    html,
+    body,
+    #myChart {
+      height: 400px;
+      width: 400px;
+    }
+  </style>
+
+</head>
+
+<body>
+	<!-- Navigation -->
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">
+					<font size="4" color="white">
+						<b>Urban Trajectory Visualization - Team 20</b>
+					</font>
+				</a>
+			</div>
+			<!-- /.navbar-collapse -->
+		</div>
+		<!-- /.container -->
+	</nav>
+	<!--dashboard-->
+	<div class="container-fluid">
+		
+		<div class="row no-gutters">
+			<div class="col-4">
+				<!-- Map -->
+				<!--<div class="col-sm-12">-->
+				<div id="map"></div>
+				<!--</div>-->
+				<!-- Map -->
+			</div>
+			<div class="col-8" id="rightside">
+				<div class="row no-gutters">
+					<!-- List -->
+					<div class="col-sm-12">
+						<div class="chart-wrapper">
+							<div class="chart-title">
+								<h1 class="h4">Scatter Matrix</h1>
+								<h5>Please click on any point to see the particular trajectory in the map. Please zoom out of the map if you couldn't find the route</h5>
+							</div>
+							<div class="chart-stage">
+								<div id="scatterplot">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-9">
+						<div class="chart-wrapper">
+							<div class="chart-title">
+								<h1 class="h4">Word Cloud</h1>
+								<h5>Displays the streets involved in the trips involved. Reactive towards the scatter matrix selection</h5>
+								<div class="cloud"></div>
+									<script src='http://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js'></script>
+									<script src='https://cdnjs.cloudflare.com/ajax/libs/d3-cloud/1.2.5/d3.layout.cloud.min.js'></script>
+									<script  src="js/index.js"></script>
+								</div>
+							<div class="chart-stage">
+								<div id="sankey">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-9">
+						<div class="chart-wrapper">
+							<div class="chart-title">
+								<h1 class="h4">Chord Diagram</h1>
+								<h5>Displays the relationship between key factors of the trips involved</h5>
+								<div class="myChart" id='myChart'></div>
+									
+									<script  src="js/index.js"></script>
+								</div>
+							<div class="chart-stage">
+								<div id="sankey">
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- List -->
+				</div>
+				<div class="row no-gutters">
+					<div class="col-sm-12">
+						<br/>
+						<br/>
+						<br/>
+						<br/>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="js/bootstrap.min.js"></script>
+	<!-- Your js File -->
+	<script src="js/Myjs.js"></script>
+</body>
+
+</html>
